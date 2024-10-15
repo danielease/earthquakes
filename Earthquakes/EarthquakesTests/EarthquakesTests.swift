@@ -10,6 +10,8 @@ import XCTest
 
 final class EarthquakesTests: XCTestCase {
 
-    
+    func testGeoJSONDecoderDecodesQuake() throws {
+        
+    }
 
 }
