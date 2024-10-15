@@ -28,5 +28,17 @@ final class EarthquakesTests: XCTestCase {
         
         
     }
+    
+    func testGeoJSONDecoderGetsCorrectValueForTsunami() throws {
+        let decoder = JSONDecoder()
+        let quake = try decoder.decode(Quake.self, from: testFeature_nc73649170)
+        
+        let expectedTsunami = quake.tsunami
+        let decodedTsunami = 0
+        
+        //Validate the tsunami
+        XCTAssertEqual(expectedTsunami, decodedTsunami)
+        
+    }
 
 }
