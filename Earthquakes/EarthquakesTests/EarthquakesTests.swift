@@ -51,6 +51,9 @@ final class EarthquakesTests: XCTestCase {
         )
         
         XCTAssertEqual(decoded.quakes.count, 6)
+        
+        //Assert code field of a quake is as expected
+        XCTAssertEqual(decoded.quakes[1].code, "72783692")
     }
 
 }
