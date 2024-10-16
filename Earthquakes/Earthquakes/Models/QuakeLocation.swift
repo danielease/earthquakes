@@ -25,10 +25,17 @@ struct QuakeLocation: Decodable {
         var properties: OriginProperties
     }
     
-    struct OriginProperties: Decodable {
+    struct OriginProperties {
         var latitude: Double
         var longitude: Double
     }
     
     
+}
+
+extension QuakeLocation.OriginProperties: Decodable {
+    private enum OriginPropertiesCodingKeys: String, CodingKey {
+        case latitude
+        case longitude
+    }
 }
