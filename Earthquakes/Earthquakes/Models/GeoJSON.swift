@@ -17,5 +17,11 @@ The root object of the GeoJSON data has four keys: type, metadata, features, and
 
 
 struct GeoJSON {
+    
+    /*  Which keys of the GeoJSON root object to decode */
+    private enum CodingKeys: String, CodingKey {
+        case features
+    }
+    
     private(set) var quakes: [Quake] = []
 }
