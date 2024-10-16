@@ -60,5 +60,13 @@ final class EarthquakesTests: XCTestCase {
         let decodedSeconds = decoded.quakes[1].time.timeIntervalSince1970
         XCTAssertEqual(expectedSeconds, decodedSeconds, accuracy: 0.00001)
     }
+    
+    func testQuakeDetailsDecoder() throws {
+        let decoded = try JSONDecoder().decode(
+            QuakeLocation.self,
+            from: testDetail_hv72783692
+        )
+        
+    }
 
 }
