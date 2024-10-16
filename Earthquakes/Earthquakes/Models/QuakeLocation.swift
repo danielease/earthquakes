@@ -38,4 +38,14 @@ extension QuakeLocation.OriginProperties: Decodable {
         case latitude
         case longitude
     }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: OriginPropertiesCodingKeys.self)
+        let longitude = try container.decode(String.self, forKey: .longitude)
+        let latitude = try container.decode(String.self, forKey: .latitude)
+        guard let longitude = Double(longitude),
+              let latitude = Double(latitude) else { throw QuakeError.missingData }
+        self.longitude = longitude
+        self.latitude = latitude
+    }
 }
