@@ -23,5 +23,13 @@ struct GeoJSON {
         case features
     }
     
+    /* Which keys of the feature objects to decode */
+    private enum FeatureCodingKeys: String, CodingKey {
+        case properties
+    }
+    
+    
+    
+    
     private(set) var quakes: [Quake] = []
 }
