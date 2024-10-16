@@ -40,5 +40,25 @@ final class EarthquakesTests: XCTestCase {
         XCTAssertEqual(expectedTsunami, decodedTsunami)
         
     }
+    
+    func testGeoJSONDecoderDecodesGeoJSON() throws {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .millisecondsSince1970
+        
+        let decoded = try decoder.decode(
+            GeoJSON.self,
+            from: testQuakesData
+        )
+        
+        XCTAssertEqual(decoded.quakes.count, 6)
+        
+        //Assert code field of a quake is as expected
+        XCTAssertEqual(decoded.quakes[1].code, "72783692")
+        
+        //Assert decoded time matches one in sample data
+        let expectedSeconds = TimeInterval(1636129061070) / 1000
+        let decodedSeconds = decoded.quakes[1].time.timeIntervalSince1970
+        XCTAssertEqual(expectedSeconds, decodedSeconds, accuracy: 0.00001)
+    }
 
 }
