@@ -67,6 +67,9 @@ final class EarthquakesTests: XCTestCase {
             from: testDetail_hv72783692
         )
         
+        XCTAssertEqual(decoded.latitude,
+                       19.2189998626709,
+                       accuracy: 0.00000000001)
     }
 
 }
