@@ -10,6 +10,7 @@ import Foundation
 struct QuakeLocation: Decodable {
     var latitude: Double
     var longitude: Double
+    private var properties: RootProperties
     
     struct RootProperties: Decodable {
         var products: Products
