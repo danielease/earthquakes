@@ -67,8 +67,14 @@ final class EarthquakesTests: XCTestCase {
             from: testDetail_hv72783692
         )
         
+        //Verify latitude matches expected value
         XCTAssertEqual(decoded.latitude,
                        19.2189998626709,
+                       accuracy: 0.00000000001)
+        
+        //Verify longitude matches expected value
+        XCTAssertEqual(decoded.longitude,
+                       -155.434173583984,
                        accuracy: 0.00000000001)
     }
 
