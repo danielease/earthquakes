@@ -22,4 +22,8 @@ class QuakesProvider : ObservableObject {
         self.quakes = quakes
     }
     
+    func deleteQuakes(atOffsets offsets: IndexSet) {
+        quakes.remove(atOffsets: offsets)
+    }
+    
 }
