@@ -26,9 +26,22 @@
 		6533E3392CBF12F60039BDA1 /* EarthquakesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EarthquakesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		6533E3842CC0AF500039BDA1 /* Exceptions for "Earthquakes" folder in "EarthquakesTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Preview Content/TestData.swift",
+			);
+			target = 6533E3382CBF12F60039BDA1 /* EarthquakesTests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		6533E25F2CBC80730039BDA1 /* Earthquakes */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				6533E3842CC0AF500039BDA1 /* Exceptions for "Earthquakes" folder in "EarthquakesTests" target */,
+			);
 			path = Earthquakes;
 			sourceTree = "<group>";
 		};
