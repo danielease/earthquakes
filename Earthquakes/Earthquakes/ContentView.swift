@@ -8,17 +8,55 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var provider: QuakesProvider
+    @State var isLoading = false
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationView {
+            List {
+                ForEach(provider.quakes) { quake in
+                    VStack(alignment: .leading) {
+                        Text(quake.place)
+                            .font(.headline)
+                        Text(quake
+                            .time
+                            .formatted(date: .abbreviated,
+                                       time: .shortened)
+                        )
+                    }
+                }
+            }
+            .navigationTitle("Quakes")
         }
-        .padding()
+        .task {
+            await fetchQuakes()
+        }
+        
+    }
+    
+    //Async method to fetch quakes
+    func fetchQuakes() async {
+        isLoading = true
+        
+        do {
+            try await provider.fetchQuakes()
+        }
+        catch {
+            
+        }
+        
+        isLoading = false
     }
 }
 
 #Preview {
     ContentView()
+        .environmentObject(
+            QuakesProvider(
+                client: QuakeClient(
+                    downloader: TestDownloader()
+                )
+            )
+                           
+        )
 }
