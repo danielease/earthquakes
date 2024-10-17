@@ -9,6 +9,15 @@ import Foundation
 
 class QuakeClient {
     
+    var quakes: [Quake] {
+        get async throws {
+            let data = try await downloader.httpData(from: quakeFeedURL)
+            let geoJSON = try decoder.decode(GeoJSON.self, from: data)
+            return geoJSON.quakes
+            
+        }
+    }
+    
     //URL to fetch quake data from
     private let quakeFeedURL = URL(string: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson")!
     
