@@ -16,4 +16,10 @@ class QuakesProvider : ObservableObject {
     init(client: QuakeClient = QuakeClient()) {
         self.client = client
     }
+    
+    func fetchQuakes() async throws {
+        let quakes = try await client.quakes
+        self.quakes = quakes
+    }
+    
 }
