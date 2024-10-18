@@ -19,6 +19,7 @@ struct Quakes: View {
                 ForEach(provider.quakes) { quake in
                     QuakeRow(quake: quake)
                 }
+                .onDelete(perform: deleteQuakes)
             }
             .navigationTitle("Earthquakes")
             .toolbar {
@@ -54,6 +55,12 @@ struct Quakes: View {
         }
         
         isLoading = false
+    }
+}
+
+extension Quakes {
+    func deleteQuakes(at offsets: IndexSet) {
+        provider.quakes.remove(atOffsets: offsets)
     }
 }
 
