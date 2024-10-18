@@ -15,15 +15,7 @@ struct ContentView: View {
         NavigationView {
             List {
                 ForEach(provider.quakes) { quake in
-                    VStack(alignment: .leading) {
-                        Text(quake.place)
-                            .font(.headline)
-                        Text(quake
-                            .time
-                            .formatted(date: .abbreviated,
-                                       time: .shortened)
-                        )
-                    }
+                    QuakeRow(quake: quake)
                 }
             }
             .navigationTitle("Quakes")
