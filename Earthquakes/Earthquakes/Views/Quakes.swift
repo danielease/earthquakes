@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct Quakes: View {
     @EnvironmentObject var provider: QuakesProvider
     @State var isLoading = false
     
@@ -42,7 +42,7 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    Quakes()
         .environmentObject(
             QuakesProvider(
                 client: QuakeClient(

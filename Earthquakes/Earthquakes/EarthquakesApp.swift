@@ -12,7 +12,7 @@ struct EarthquakesApp: App {
     @StateObject var quakesProvider = QuakesProvider()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Quakes()
                 .environmentObject(quakesProvider)
         }
     }
