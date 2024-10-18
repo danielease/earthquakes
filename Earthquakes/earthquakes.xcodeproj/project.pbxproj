@@ -27,7 +27,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		6533E3842CC0AF500039BDA1 /* Exceptions for "Earthquakes" folder in "EarthquakesTests" target */ = {
+		6533E3842CC0AF500039BDA1 /* Exceptions for "earthquakes" folder in "EarthquakesTests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				"Preview Content/TestData.swift",
@@ -37,17 +37,17 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		6533E25F2CBC80730039BDA1 /* Earthquakes */ = {
+		6533E25F2CBC80730039BDA1 /* earthquakes */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				6533E3842CC0AF500039BDA1 /* Exceptions for "Earthquakes" folder in "EarthquakesTests" target */,
+				6533E3842CC0AF500039BDA1 /* Exceptions for "earthquakes" folder in "EarthquakesTests" target */,
 			);
-			path = Earthquakes;
+			path = earthquakes;
 			sourceTree = "<group>";
 		};
-		6533E33A2CBF12F60039BDA1 /* EarthquakesTests */ = {
+		6533E33A2CBF12F60039BDA1 /* earthquakesTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = EarthquakesTests;
+			path = earthquakesTests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -74,8 +74,8 @@
 			isa = PBXGroup;
 			children = (
 				6533E26E2CBC810E0039BDA1 /* README.md */,
-				6533E25F2CBC80730039BDA1 /* Earthquakes */,
-				6533E33A2CBF12F60039BDA1 /* EarthquakesTests */,
+				6533E25F2CBC80730039BDA1 /* earthquakes */,
+				6533E33A2CBF12F60039BDA1 /* earthquakesTests */,
 				6533E25E2CBC80730039BDA1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -105,7 +105,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				6533E25F2CBC80730039BDA1 /* Earthquakes */,
+				6533E25F2CBC80730039BDA1 /* earthquakes */,
 			);
 			name = Earthquakes;
 			packageProductDependencies = (
@@ -128,7 +128,7 @@
 				6533E33E2CBF12F60039BDA1 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				6533E33A2CBF12F60039BDA1 /* EarthquakesTests */,
+				6533E33A2CBF12F60039BDA1 /* earthquakesTests */,
 			);
 			name = EarthquakesTests;
 			packageProductDependencies = (
@@ -156,7 +156,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6533E2582CBC80730039BDA1 /* Build configuration list for PBXProject "Earthquakes" */;
+			buildConfigurationList = 6533E2582CBC80730039BDA1 /* Build configuration list for PBXProject "earthquakes" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -436,7 +436,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6533E2582CBC80730039BDA1 /* Build configuration list for PBXProject "Earthquakes" */ = {
+		6533E2582CBC80730039BDA1 /* Build configuration list for PBXProject "earthquakes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6533E2692CBC80740039BDA1 /* Debug */,
