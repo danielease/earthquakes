@@ -12,18 +12,34 @@ struct Quakes: View {
     @State var isLoading = false
     
     @State var editMode: EditMode = .inactive
+    @State var selectMode: SelectMode = .inactive
+    @State var selection: Set<String> = []
     
     var body: some View {
         NavigationView {
-            List {
+            List(selection: $selection) {
                 ForEach(provider.quakes) { quake in
                     QuakeRow(quake: quake)
                 }
                 .onDelete(perform: deleteQuakes)
             }
             .listStyle(.inset)
-            .navigationTitle("Earthquakes")
+            .navigationTitle(title)
             .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                            if editMode == .active {
+                                Button {
+                                    selectMode.toggle()
+                                    if selectMode.isActive {
+                                        selection = Set(provider.quakes.map { $0.code })
+                                    } else {
+                                        selection = []
+                                    }
+                                } label: {
+                                    Text(selectMode.isActive ? "Deslect All" : "Select All")
+                                }
+                            }
+                        }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         withAnimation {
@@ -60,8 +76,33 @@ struct Quakes: View {
 }
 
 extension Quakes {
+    var title: String {
+        if selectMode.isActive || selection.isEmpty {
+            return "Earthquakes"
+        } else {
+            return "\(selection.count) Selected"
+        }
+    }
+    
     func deleteQuakes(at offsets: IndexSet) {
         provider.quakes.remove(atOffsets: offsets)
+    }
+}
+
+enum SelectMode {
+    case active, inactive
+
+    var isActive: Bool {
+        self == .active
+    }
+
+    mutating func toggle() {
+        switch self {
+        case .active:
+            self = .inactive
+        case .inactive:
+            self = .active
+        }
     }
 }
 
