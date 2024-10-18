@@ -11,6 +11,8 @@ struct Quakes: View {
     @EnvironmentObject var provider: QuakesProvider
     @State var isLoading = false
     
+    @State var editMode: EditMode = .inactive
+    
     var body: some View {
         NavigationView {
             List {
