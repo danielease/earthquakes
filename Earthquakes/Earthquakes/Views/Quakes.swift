@@ -20,7 +20,21 @@ struct Quakes: View {
                     QuakeRow(quake: quake)
                 }
             }
-            .navigationTitle("Quakes")
+            .navigationTitle("Earthquakes")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        withAnimation {
+                            editMode.toggle()
+                        }
+                    } label: {
+                        editMode == .active ?
+                        Text("Done").bold() :
+                        Text("Edit")
+                    }
+                }
+            }
+            .environment(\.editMode, $editMode)
         }
         .task {
             await fetchQuakes()
@@ -40,6 +54,17 @@ struct Quakes: View {
         }
         
         isLoading = false
+    }
+}
+
+extension EditMode {
+    mutating func toggle() {
+        if self == .active {
+            self = .inactive
+        }
+        else if self == .inactive {
+            self = .active
+        }
     }
 }
 
