@@ -21,6 +21,7 @@ struct Quakes: View {
                 }
                 .onDelete(perform: deleteQuakes)
             }
+            .listStyle(.inset)
             .navigationTitle("Earthquakes")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
