@@ -10,16 +10,17 @@ import SwiftUI
 struct QuakeRow: View {
     let quake: Quake
     var body: some View {
-        VStack(alignment: .leading) {
-            Text(quake.place)
-                .font(.title3)
-            Text(quake
-                .time
-                .formatted(.relative(presentation: .named))
-            )
+        HStack(alignment: .top) {
+            QuakeMagnitude(quake: quake)
+            VStack(alignment: .leading) {
+                Text(quake.place)
+                    .font(.headline)
+                    .fontWeight(.medium)
+                Text("\(quake.time.formatted(.relative(presentation: .named)))")
+                    .foregroundStyle(.secondary)
+            }
         }
         .padding(.vertical, 8)
-        
     }
 }
 
