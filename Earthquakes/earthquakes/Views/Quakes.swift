@@ -15,6 +15,9 @@ struct Quakes: View {
     @State var selectMode: SelectMode = .inactive
     @State var selection: Set<String> = []
     
+    @State private var error: QuakeError?
+    @State private var hasError = false
+    
     var body: some View {
         NavigationView {
             List(selection: $selection) {
@@ -56,6 +59,7 @@ struct Quakes: View {
             .refreshable {
                 await fetchQuakes()
             }
+            .alert(isPresented: $hasError, error: error) {}
         }
         .task {
             await fetchQuakes()
@@ -69,9 +73,11 @@ struct Quakes: View {
         
         do {
             try await provider.fetchQuakes()
+            self.hasError = false
         }
         catch {
-            
+            self.error = error as? QuakeError ?? .unexpectedError(error)
+            self.hasError = true
         }
         
         isLoading = false
