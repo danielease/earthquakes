@@ -53,6 +53,9 @@ struct Quakes: View {
                 }
             }
             .environment(\.editMode, $editMode)
+            .refreshable {
+                await fetchQuakes()
+            }
         }
         .task {
             await fetchQuakes()
