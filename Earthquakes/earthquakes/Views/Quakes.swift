@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct Quakes: View {
+    @AppStorage("lastUpdated")
+    var lastUpdated = Date.distantFuture.timeIntervalSince1970
+    
     @EnvironmentObject var provider: QuakesProvider
     @State var isLoading = false
     
@@ -28,33 +31,7 @@ struct Quakes: View {
             }
             .listStyle(.inset)
             .navigationTitle(title)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                            if editMode == .active {
-                                Button {
-                                    selectMode.toggle()
-                                    if selectMode.isActive {
-                                        selection = Set(provider.quakes.map { $0.code })
-                                    } else {
-                                        selection = []
-                                    }
-                                } label: {
-                                    Text(selectMode.isActive ? "Deslect All" : "Select All")
-                                }
-                            }
-                        }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        withAnimation {
-                            editMode.toggle()
-                        }
-                    } label: {
-                        editMode == .active ?
-                        Text("Done").bold() :
-                        Text("Edit")
-                    }
-                }
-            }
+            .toolbar(content: toolbarContent)
             .environment(\.editMode, $editMode)
             .refreshable {
                 await fetchQuakes()
@@ -73,6 +50,7 @@ struct Quakes: View {
         
         do {
             try await provider.fetchQuakes()
+            lastUpdated = Date().timeIntervalSince1970
             self.hasError = false
         }
         catch {
@@ -96,23 +74,17 @@ extension Quakes {
     func deleteQuakes(at offsets: IndexSet) {
         provider.quakes.remove(atOffsets: offsets)
     }
-}
-
-enum SelectMode {
-    case active, inactive
-
-    var isActive: Bool {
-        self == .active
-    }
-
-    mutating func toggle() {
-        switch self {
-        case .active:
-            self = .inactive
-        case .inactive:
-            self = .active
+    
+    func deleteQuakes(for codes: Set<String>) {
+            var offsetsToDelete: IndexSet = []
+            for (index, element) in provider.quakes.enumerated() {
+                if codes.contains(element.code) {
+                    offsetsToDelete.insert(index)
+                }
+            }
+            deleteQuakes(at: offsetsToDelete)
+            selection.removeAll()
         }
-    }
 }
 
 extension EditMode {
